@@ -1,0 +1,24 @@
+{
+  "name": "@auojs/press-core",
+  "version": "1.0.0",
+  "main": "dist/press-core.cjs.js",
+  "module": "dist/press-core.esm.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "buildOptions": {
+    "formats": [
+      "esm",
+      "cjs"
+    ]
+  },
+  "dependencies": {
+    "@vue/compiler-sfc": "^3.0.2",
+    "vue": "^3.0.2",
+    "vue-loader-v16": "^16.0.0-beta.5.4",
+    "vue-router": "^4.0.0-alpha.14",
+    "webpack": "^5.5.0"
+  },
+  "devDependencies": {
+    "@types/webpack": "^4.41.25"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "auopress -v",
+    "docs:build": "auopress build docs"
+  },
+  "devDependencies": {
+    "@auojs/press": "~1.0.0"
+  }
+}
