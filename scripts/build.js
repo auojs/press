@@ -17,16 +17,23 @@ async function buildAll(targets) {
 }
 
 async function build(target) {
-  const pkgDir = path.resolve(`packages/${target}`);
+  const pkgDir = path.resolve(`packages/@auojs/${target}`);
 
   // 移除dist
   await fs.remove(`${pkgDir}/dist`);
 
-  execa(
-    'rollup',
-    ['-wc', '--environment', [`TARGET:${target}`].filter(Boolean).join(',')],
-    {
+  if (fs.existsSync(path.resolve(pkgDir, 'tsconfig.json'))) {
+    execa('yarn', ['workspace', `@auojs/${target}`, 'run', 'tsc'], {
       stdio: 'inherit'
-    }
-  );
+    });
+  }
+
+  // fs.existsSync(path.resolve(pkgDir, 'tsconfig.json'))
+  // execa(
+  //   'rollup',
+  //   ['-wc', '--environment', [`TARGET:${target}`].filter(Boolean).join(',')],
+  //   {
+  //     stdio: 'inherit'
+  //   }
+  // );
 }

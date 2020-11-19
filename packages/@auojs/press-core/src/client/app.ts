@@ -1,9 +1,8 @@
 import { defineComponent, h } from 'vue';
+import { RouterView } from 'vue-router';
 
 export default defineComponent({
   render() {
-    return h('div', { attrs: { id: 'app' } }, [
-      h('RouterView', { ref: 'layout' })
-    ]);
+    return h('div', { id: 'app' }, [h(RouterView, { ref: 'layout' })]);
   }
 });

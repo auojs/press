@@ -1,11 +1,15 @@
-import App, { AuoPressConfig } from './node/AuoPress';
+import AuoPress, { AuoPressConfig } from './node/AuoPress';
+
+async function dev(config: AuoPressConfig) {
+  const app = new AuoPress(config);
+  await app.process();
+  return app.dev();
+}
 
 async function build(config: AuoPressConfig) {
-  console.log(config, 'config');
-
-  const app = new App(config);
+  const app = new AuoPress(config);
   await app.process();
   return app.build();
 }
 
-export { build };
+export { build, dev };

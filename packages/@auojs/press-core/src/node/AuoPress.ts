@@ -1,5 +1,6 @@
 import path from 'path';
-import BuildProcess from './build';
+import BuildProcess from './lib/build';
+import DevProcess from './lib/dev';
 
 export interface AuoPressConfig {
   // 运行路径 D:\docs\
@@ -11,6 +12,7 @@ export interface AuoPressConfig {
 export default class AuoPress {
   public config: AuoPressConfig;
   public buildProcess: BuildProcess;
+  public devProcess: DevProcess;
 
   constructor(config: AuoPressConfig) {
     this.config = config;
@@ -28,7 +30,9 @@ export default class AuoPress {
     }
   }
 
-  async process() {}
+  async process() {
+    this.devProcess = new DevProcess(this);
+  }
 
   async build() {
     this.buildProcess = new BuildProcess(this);
@@ -36,4 +40,31 @@ export default class AuoPress {
     await this.buildProcess.render();
     return this;
   }
+
+  async dev() {
+    this.devProcess = new DevProcess(this);
+    await this.devProcess.process();
+    this.devProcess.createServer();
+    this.devProcess.listen(8088, 'localhost');
+    return this;
+  }
+}
+
+/** 用户配置 */
+export interface AuoPressClientConfig {
+  base: string;
+  title: string;
+  description: string;
+  head: Array<any>;
+  host: string;
+  port: number;
+  temp: string;
+  dest: string;
+  locales: any;
+  shouldPrefetch: Function;
+  cache: boolean | string;
+  extraWatchFiles: Array<string>;
+  patterns: any;
+  theme?: string | object;
+  themeConfig?: object;
 }

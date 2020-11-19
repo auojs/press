@@ -19,7 +19,7 @@ export function compile(config: webpack.Configuration) {
   });
 }
 
-export default class Build {
+export default class BuildProcess {
   private webpackConfig: webpack.Configuration;
   private context: AuoPress;
   constructor(context: AuoPress) {
@@ -36,6 +36,5 @@ export default class Build {
 
   getWebpackConfig() {
     this.webpackConfig = createClientConfig(this.context);
-    console.log(this.webpackConfig);
   }
 }

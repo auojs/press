@@ -1,0 +1,13 @@
+{
+  "name": "@auojs/press-shared-utils",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "types": "types/index.d.ts",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.4"
+  }
+}

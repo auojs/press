@@ -1,0 +1,7 @@
+{
+  "name": "@auojs/markdown-loader",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
+  "license": "MIT"
+}

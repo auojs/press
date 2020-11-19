@@ -1,3 +1,5 @@
 #! /usr/bin/env node
 
-require('.')(process.argv);
+const { CLI } = require('.');
+
+CLI(process.argv);
