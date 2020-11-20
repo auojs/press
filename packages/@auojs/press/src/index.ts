@@ -5,7 +5,7 @@ import { build, dev } from '@auojs/press-core';
 export function CLI(argv: string[]) {
   program
     .version(`@auojs/press ${require('../package.json').version}`)
-    .usage('<command> [options]');
+    .usage('<command> [options] 2');
 
   program.command('serve [entry]').action((entry, cmd) => {});
 

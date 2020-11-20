@@ -1,5 +1,5 @@
 function loader(source: string) {
-  return source;
+  return source + '1221';
 }
 
 export default loader;
