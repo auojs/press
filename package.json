@@ -5,10 +5,6 @@
     "packages/docs"
   ],
   "scripts": {
-    "dev": "yarn workspaces run dev",
-    "build": "yarn workspaces run build",
-    "run:build": "node ./scripts/build.js",
-    "gulp": "gulp",
     "gulp:dev": "gulp dev",
     "gulp:build": "gulp build"
   },

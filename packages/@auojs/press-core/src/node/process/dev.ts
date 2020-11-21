@@ -23,9 +23,11 @@ export function compile(config: webpack.Configuration) {
 }
 
 export default class DevProcess {
-  private webpackConfig: webpack.Configuration;
+  protected readonly context: AuoPress;
+  protected webpackConfig: webpack.Configuration;
   private server: WebpackDevServer;
-  private context: AuoPress;
+  public prot: number = 8088;
+  public hostname: string = 'localhost';
 
   constructor(context: AuoPress) {
     this.context = context;
@@ -42,9 +44,11 @@ export default class DevProcess {
       headers: {
         'access-control-allow-origin': '*'
       },
-      publicPath: '/',
-      contentBase: this.context.config.outDir
+      publicPath: 'http://localhost:8088',
+      contentBase: this.context.config.outDir,
+      historyApiFallback: true
     };
+
     WebpackDevServer.addDevServerEntrypoints(this.webpackConfig, serverConfig);
 
     const compiler = webpack(this.webpackConfig);
@@ -52,9 +56,9 @@ export default class DevProcess {
     return this;
   }
 
-  listen(prot: number, hostname: string, callback?: Function) {
-    this.server.listen(prot, hostname, (err) => {
-      if (callback) {
+  listen(callback?: Function) {
+    this.server.listen(this.prot, this.hostname, (err) => {
+      if (typeof callback === 'function') {
         callback(err);
       }
     });
@@ -65,13 +69,14 @@ export default class DevProcess {
     if (this.webpackConfig.plugins) {
       this.webpackConfig.plugins.push(
         new HtmlWebpackPlugin({
-          template: path.resolve(__dirname, '../../cliemt/index.html')
+          template: path.resolve(__dirname, '../../client/index.html')
         })
       );
     }
 
-    console.log(path.resolve(__dirname, '../../cliemt/index.html'), 'template');
-
-    // console.log(this.webpackConfig, 'this.webpackConfig');
+    if (this.webpackConfig.output) {
+      this.webpackConfig.output.publicPath = 'http://localhost:8088';
+    }
+    //
   }
 }

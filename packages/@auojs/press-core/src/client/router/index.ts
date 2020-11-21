@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import GlobalLayout from '../components/GlobalLayout';
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/'),
   routes: [
     {
       path: '/',

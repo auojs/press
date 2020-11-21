@@ -1,7 +1,7 @@
 {
-  "name": "@auojs/press-shared-utils",
+  "name": "@auojs/shared-utils",
   "version": "1.0.0",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "types": "types/index.d.ts",
   "license": "MIT",
   "dependencies": {

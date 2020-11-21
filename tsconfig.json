@@ -25,11 +25,14 @@
     ],
     "rootDir": ".",
     "paths": {
-      "@auojs/*": ["packages/@auojs/*/src"]
+      "@auojs/*": ["packages/@auojs/*/src"],
+      "@internal/*": ["packages/@auojs/press-core/src/node/internal-plugins/*"]
     }
   },
   "include": [
-    "packages/@auojs/**/*.ts"
+    "packages/@auojs/**/*.ts",
+    "packages/@auojs/**/*.tsx",
+    "packages/@auojs/**/*.vue"
   ],
   "exclude": [
     "node_modules"

@@ -1,6 +1,7 @@
 import path from 'path';
-import BuildProcess from './lib/build';
-import DevProcess from './lib/dev';
+import BuildProcess from './process/build';
+import DevProcess from './process/dev';
+import { generateRoutes } from './generateRoute';
 
 export interface AuoPressConfig {
   // 运行路径 D:\docs\
@@ -16,6 +17,12 @@ export default class AuoPress {
 
   constructor(config: AuoPressConfig) {
     this.config = config;
+
+    console.log(
+      this.config,
+      '----',
+      JSON.stringify(generateRoutes(this.config.sourceDir))
+    );
 
     // 配置目录
     if (!this.config.auopressDir) {
@@ -34,6 +41,8 @@ export default class AuoPress {
     this.devProcess = new DevProcess(this);
   }
 
+  applyPlugins() {}
+
   async build() {
     this.buildProcess = new BuildProcess(this);
     await this.buildProcess.process();
@@ -44,8 +53,19 @@ export default class AuoPress {
   async dev() {
     this.devProcess = new DevProcess(this);
     await this.devProcess.process();
-    this.devProcess.createServer();
-    this.devProcess.listen(8088, 'localhost');
+    const error = await new Promise((reslove) => {
+      try {
+        this.devProcess.createServer();
+        this.devProcess.listen(reslove);
+      } catch (err) {
+        reslove(err);
+      }
+    });
+
+    if (error) {
+      throw error;
+    }
+
     return this;
   }
 }

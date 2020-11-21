@@ -51,4 +51,5 @@ export async function devGulp(target: string) {
 
   tsCompile(resolve('src/**/*.ts'));
   gulp.src(resolve('src/**/*.html')).pipe(minifyHtml()).pipe(gulp.dest(outDir));
+  gulp.src(resolve('src/**/*.vue')).pipe(gulp.dest(outDir));
 }

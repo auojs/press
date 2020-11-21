@@ -5,3 +5,4 @@ createApp().then(({ app, router }) => {
     app.mount('#app');
   });
 });
+

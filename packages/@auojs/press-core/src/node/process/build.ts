@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+// import { renderToString } from '@vue/server-renderer';
 import AuoPress from '../AuoPress';
 import { createClientConfig } from '../webpack/createClientConfig';
 
@@ -31,6 +32,8 @@ export default class BuildProcess {
   }
 
   async render() {
+    // const html = await renderToString(app);
+    // console.log(html);
     compile(this.webpackConfig);
   }
 
