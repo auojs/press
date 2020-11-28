@@ -1,0 +1,96 @@
+@btn-prefix-Cls: ~'@{auo-prefix}-btn';
+
+// for compatible
+@btn-ghost-color: @text-color;
+@btn-ghost-bg: transparent;
+@btn-ghost-border: @border-color-base;
+
+.@{btn-prefix-Cls} {
+  .btn;
+  .btn-default;
+
+  // Make sure that the target of Button's click event always be `button`
+  // Ref: https://github.com/ant-design/ant-design/issues/7034
+  > i,
+  > span {
+    display: inline-block;
+    transition: margin-left 0.3s @ease-in-out;
+    pointer-events: none;
+  }
+
+  &-primary {
+    .btn-primary;
+  }
+
+  &-dashed {
+    .btn-dashed;
+  }
+
+  &-danger {
+    .btn-danger;
+  }
+
+  &-link {
+    .btn-link;
+  }
+
+  &::before {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    z-index: 1;
+    display: none;
+    background: @component-background;
+    border-radius: inherit;
+    opacity: 0.35;
+    transition: opacity 0.2s;
+    content: '';
+    pointer-events: none;
+  }
+
+  // https://github.com/ant-design/ant-design/issues/12681
+  &:empty {
+    vertical-align: top;
+  }
+
+  &&-loading {
+    position: relative;
+    &:not([disabled]) {
+      pointer-events: none;
+    }
+  }
+
+  &&-loading::before {
+    display: block;
+  }
+
+  &&-loading:not(&-circle):not(&-circle-outline):not(&-icon-only) {
+    padding-left: 29px;
+    .@{iconfont-css-prefix}:not(:last-child) {
+      margin-left: -14px;
+    }
+  }
+
+  // http://stackoverflow.com/a/21281554/3040605
+  &:focus > span,
+  &:active > span {
+    position: relative;
+  }
+
+  // To ensure that a space will be placed between character and `Icon`.
+  > .@{iconfont-css-prefix} + span,
+  > span + .@{iconfont-css-prefix} {
+    margin-left: 8px;
+  }
+
+  &-block {
+    width: 100%;
+  }
+
+  // https://github.com/ant-design/ant-design/issues/12681
+  &:empty {
+    vertical-align: top;
+  }
+}

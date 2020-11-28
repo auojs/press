@@ -1,10 +1,10 @@
 import path from 'path';
 import webpack from 'webpack';
-import AuoPress from '../AuoPress';
+import Process from '../AuoPress/Process';
 import { createBaseConfig } from './createBaseConfig';
 
-export function createClientConfig(context: AuoPress) {
-  const config: webpack.Configuration = createBaseConfig(context);
+export function createClientConfig(cx: Process) {
+  const config: webpack.Configuration = createBaseConfig(cx);
   config.entry = {
     app: [path.resolve(__dirname, '../../client/clientEntry')]
   };

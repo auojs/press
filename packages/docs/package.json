@@ -9,5 +9,8 @@
   },
   "devDependencies": {
     "@auojs/press": "~1.0.0"
+  },
+  "dependencies": {
+    "@vuepress/theme-default": "^1.7.1"
   }
 }

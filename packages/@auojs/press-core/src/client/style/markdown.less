@@ -1,0 +1,335 @@
+.mixin-pre() {
+  &:not(pre) {
+    & > code {
+      padding: 2px 4px;
+      margin: 0 4px;
+      background-color: #f5f7f9;
+      font-size: 14px;
+      border-radius: 2px;
+      font-family: Consolas, Courier New, monospace;
+    }
+  }
+
+  :not(pre) > code[class*='language-'],
+  pre[class*='language-'] {
+    background: @md-pre-background;
+    background: radial-gradient(
+      circle at right,
+      @md-pre-background-dark,
+      @md-pre-background
+    );
+  }
+
+  pre[class*='language-'] {
+    line-height: 1.4;
+    padding: 1.25rem 1.5rem;
+    margin: 0.85rem 0;
+    border-radius: 4px;
+    overflow: auto;
+    white-space: pre-wrap;
+    // background-color: @md-pre-background;
+
+    & > code {
+      font-size: 15px;
+      font-family: Source Code Pro, Menlo, Monaco, Consolas, Courier New,
+        monospace;
+    }
+
+    &[class*='language-']:before {
+      position: absolute;
+      z-index: 3;
+      bottom: 0.8em;
+      right: 1em;
+      font-size: 0.75rem;
+      color: hsla(0, 0%, 100%, 0.4);
+    }
+
+    &[class~='language-js']:before {
+      content: 'js';
+    }
+
+    &[class~='language-jsx']:before {
+      content: 'jsx';
+    }
+
+    &[class~='language-ts']:before {
+      content: 'ts';
+    }
+
+    &[class~='language-tsx']:before {
+      content: 'tsx';
+    }
+
+    &[class~='language-html']:before {
+      content: 'html';
+    }
+
+    &[class~='language-md']:before {
+      content: 'md';
+    }
+
+    &[class~='language-vue']:before {
+      content: 'vue';
+    }
+
+    &[class~='language-css']:before {
+      content: 'css';
+    }
+
+    &[class~='language-sass']:before {
+      content: 'sass';
+    }
+
+    &[class~='language-scss']:before {
+      content: 'scss';
+    }
+
+    &[class~='language-less']:before {
+      content: 'less';
+    }
+
+    &[class~='language-stylus']:before {
+      content: 'stylus';
+    }
+
+    &[class~='language-go']:before {
+      content: 'go';
+    }
+
+    &[class~='language-java']:before {
+      content: 'java';
+    }
+
+    &[class~='language-c']:before {
+      content: 'c';
+    }
+
+    &[class~='language-sh']:before {
+      content: 'sh';
+    }
+
+    &[class~='language-yaml']:before {
+      content: 'yaml';
+    }
+
+    &[class~='language-py']:before {
+      content: 'py';
+    }
+
+    &[class~='language-docker']:before {
+      content: 'docker';
+    }
+
+    &[class~='language-dockerfile']:before {
+      content: 'dockerfile';
+    }
+
+    &[class~='language-makefile']:before {
+      content: 'makefile';
+    }
+
+    &[class~='language-javascript']:before {
+      content: 'js';
+    }
+
+    &[class~='language-typescript']:before {
+      content: 'ts';
+    }
+
+    &[class~='language-markup']:before {
+      content: 'html';
+    }
+
+    &[class~='language-markdown']:before {
+      content: 'md';
+    }
+
+    &[class~='language-json']:before {
+      content: 'json';
+    }
+
+    &[class~='language-ruby']:before {
+      content: 'rb';
+    }
+
+    &[class~='language-python']:before {
+      content: 'py';
+    }
+
+    &[class~='language-bash']:before {
+      content: 'sh';
+    }
+
+    &[class~='language-php']:before {
+      content: 'php';
+    }
+  }
+}
+
+.mixin-header() {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    position: relative;
+    cursor: text;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+
+    &:hover,
+    &:anchor {
+      text-decoration: none;
+    }
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    margin-top: 3rem;
+
+    padding-bottom: 0.4rem;
+  }
+  h2 {
+    font-size: 1.6rem;
+    margin-top: 2.25rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    margin-top: 2rem;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+    margin-top: 1.75rem;
+  }
+
+  h5 {
+    font-size: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    opacity: 0.8;
+  }
+}
+
+.mixin-table() {
+  table {
+    font-family: Consolas, Menlo, Courier, monospace;
+    font-size: 12px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    // border: 1px solid #e9e9e9;
+    width: 100%;
+    margin-bottom: 24px;
+
+    th {
+      background: #f7f7f7;
+      white-space: nowrap;
+      color: #5c6b77;
+      font-weight: 600;
+      // background: #001529;
+      border-bottom: 2px solid#eee;
+      padding: 14px;
+    }
+
+    td {
+      border-bottom: 1px solid#eeeeee;
+      padding: 14px 16px;
+      font-family: Source Code Pro, Menlo, Monaco, Consolas, Courier New;
+      font-size: 15px;
+
+      &:first-child {
+        font-weight: 500;
+        width: 20%;
+        color: #003a8c;
+      }
+
+      &:last-child {
+        width: 13%;
+        font-size: 13px;
+      }
+
+      &:nth-child(3) {
+        width: 22%;
+        font-size: 13px;
+        color: #c41d7f;
+        word-break: break-all;
+      }
+    }
+  }
+}
+
+.mixin-pre;
+.mixin-header;
+.mixin-table;
+
+a {
+  color: @md-primary-color;
+  font-weight: 500;
+  padding: 0 2px;
+  text-decoration: none;
+}
+
+ol,
+p,
+ul {
+  line-height: 1.4rem;
+  word-spacing: 0.05rem;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl {
+  margin: 0rem 0rem 1.4rem 0rem;
+}
+
+li > ol,
+li > ul {
+  margin: 0 0;
+}
+
+hr {
+  height: 2px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+  overflow: hidden;
+  box-sizing: content-box;
+}
+
+// ----- blockquote -----
+blockquote {
+  background-color: #f5f7f9;
+  border-left: 4px solid @md-primary-color;
+  border-radius: 0.3rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+
+  & > :first-child {
+    margin-top: 0;
+  }
+}
+
+// ----- list -----
+li > :first-child {
+  margin-top: 0;
+}
+
+// ----- img -----
+img {
+  max-width: 100%;
+}

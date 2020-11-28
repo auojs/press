@@ -3,5 +3,13 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@auojs/press-markdown": "~1.0.0",
+    "loader-utils": "^2.0.0",
+    "querystring": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/loader-utils": "^2.0.1"
+  }
 }

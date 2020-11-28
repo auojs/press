@@ -1,0 +1,38 @@
+@tooltip-prefix-cls: ~'@{auo-prefix}-tooltip';
+
+@tooltip-arrow-shadow-width: 3px;
+
+@tooltip-arrow-rotate-width: sqrt(@tooltip-arrow-width * @tooltip-arrow-width * 2) +
+  @tooltip-arrow-shadow-width * 2;
+
+@tooltip-arrow-offset-vertical: 5px; // 8 - 3px
+@tooltip-arrow-offset-horizontal: 13px; // 16 - 3px
+
+.@{tooltip-prefix-cls} {
+  display: inline-block;
+
+  // Wrapper for the tooltip content
+  &-inner {
+    min-width: 30px;
+    min-height: 32px;
+    padding: 6px 8px;
+    color: @tooltip-color;
+    text-align: left;
+    text-decoration: none;
+    word-wrap: break-word;
+    background-color: @tooltip-bg;
+    border-radius: @border-radius-base;
+    box-shadow: @box-shadow-base;
+    z-index: 1;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

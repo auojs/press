@@ -1,0 +1,99 @@
+@font-face {
+  font-family: Source Code Pro;
+  src: url('./fonts/SourceCodePro-Regular.ttf');
+}
+
+body {
+  font-family: @md-font-family;
+  font-size: @md-font-size;
+  color: @md-font-color;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+
+  .layout {
+    height: 100%;
+  }
+}
+
+.logo {
+  font-weight: 550;
+  font-size: 24px;
+  color: #f2f2f2;
+  text-decoration: none;
+  float: left;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.links {
+  display: flex;
+  font-size: 0.9rem;
+
+  a {
+    text-decoration: none;
+    margin-left: 1.5rem;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+.layout {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  min-height: 0;
+  // background: #f0f2f5;
+
+  &&-has-sider {
+    flex-direction: row;
+  }
+
+  &-header,
+  &-footer {
+    flex: 0 0 auto;
+  }
+
+  &-header {
+    // background-color: #b3c0d1;
+    color: #333;
+    line-height: 60px;
+    height: 60px;
+    display: flex;
+    padding: 0 40px;
+    justify-content: space-between;
+    border-bottom: 1px solid #f2f2f2;
+  }
+
+  &-content {
+    // background-color: #e9eef3;
+    color: #333;
+    flex: auto;
+  }
+
+  &-sider {
+    // background-color: #d3dce6;
+    text-align: center;
+    overflow: auto;
+    width: 256px;
+    border-right: 1px solid #f2f2f2;
+    border-left: 1px solid #f2f2f2;
+  }
+}
+
+@import './variable';
+@import './normalize.css';
+@import '~prismjs/themes/prism-tomorrow.css';
+@import '~prismjs/plugins/line-highlight/prism-line-highlight.css';
+@import './markdown';
+@import './layout';

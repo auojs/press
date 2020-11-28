@@ -1,0 +1,31 @@
+@alert-prefix-cls: ~'@{auo-prefix}-alert';
+
+.@{alert-prefix-cls} {
+  position: relative;
+  padding: 8px 48px 8px 16px;
+  border-radius: 4px;
+  color: #515a6e;
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 10px;
+
+  &-info {
+    border: 1px solid #abdcff;
+    background-color: #f0faff;
+  }
+  &-success {
+    background-color: #f6ffed;
+    border: 1px solid #b7eb8f;
+  }
+  &-warning {
+    background-color: #fffbe6;
+    border: 1px solid #ffe58f;
+  }
+  &-error {
+    background-color: #fff1f0;
+    border: 1px solid #ffa39e;
+  }
+  &-with-banner {
+    border-radius: 0;
+  }
+}

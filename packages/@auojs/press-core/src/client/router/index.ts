@@ -1,23 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import GlobalLayout from '../components/GlobalLayout';
+import { routes } from '@internal/routes';
 
 const router = createRouter({
   history: createWebHistory('/'),
-  routes: [
-    {
-      path: '/',
-      name: '_home',
-      component: GlobalLayout,
-      redirect: { name: 'Button' },
-      children: [
-        {
-          path: 'button',
-          name: 'Button',
-          component: () => import('../components/Button')
-        }
-      ]
-    }
-  ]
+  routes
 });
 
 export default router;

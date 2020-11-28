@@ -1,6 +1,13 @@
-import { build } from './scripts/build';
-import { dev } from './scripts/dev';
+import { buildGulp } from './build/build';
+import { devGulp } from './build/dev';
+import { loopTargets } from './build/lib/utils';
 
-export { build, dev };
-// exports.dev = dev;
-// exports.build = build;
+const gulpTask = (callback: Function) => {
+  return (cb: any) => {
+    loopTargets(callback);
+    cb();
+  };
+};
+
+export const build = gulpTask(buildGulp);
+export const dev = gulpTask(devGulp);

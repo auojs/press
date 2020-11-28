@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 // import { renderToString } from '@vue/server-renderer';
-import AuoPress from '../AuoPress';
+import Process from '../AuoPress/Process';
 import { createClientConfig } from '../webpack/createClientConfig';
 
 export function compile(config: webpack.Configuration) {
@@ -22,8 +22,8 @@ export function compile(config: webpack.Configuration) {
 
 export default class BuildProcess {
   private webpackConfig: webpack.Configuration;
-  private context: AuoPress;
-  constructor(context: AuoPress) {
+  private context: Process;
+  constructor(context: Process) {
     this.context = context;
   }
 
@@ -32,8 +32,6 @@ export default class BuildProcess {
   }
 
   async render() {
-    // const html = await renderToString(app);
-    // console.log(html);
     compile(this.webpackConfig);
   }
 

@@ -1,9 +1,9 @@
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import AuoPress from '../AuoPress';
+import Process from '../AuoPress/Process';
 import { createClientConfig } from '../webpack/createClientConfig';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export function compile(config: webpack.Configuration) {
   return new Promise((resolve, reject) => {
@@ -23,13 +23,13 @@ export function compile(config: webpack.Configuration) {
 }
 
 export default class DevProcess {
-  protected readonly context: AuoPress;
+  protected readonly context: Process;
   protected webpackConfig: webpack.Configuration;
   private server: WebpackDevServer;
-  public prot: number = 8088;
-  public hostname: string = 'localhost';
+  public prot = 8088;
+  public hostname = 'localhost';
 
-  constructor(context: AuoPress) {
+  constructor(context: Process) {
     this.context = context;
   }
 
@@ -39,14 +39,18 @@ export default class DevProcess {
 
   async createServer() {
     const serverConfig: WebpackDevServer.Configuration = {
-      hot: true,
-      quiet: true,
-      headers: {
-        'access-control-allow-origin': '*'
-      },
-      publicPath: 'http://localhost:8088',
-      contentBase: this.context.config.outDir,
-      historyApiFallback: true
+      hot: true, // 启用 webpack 的模块热替换特性
+      clientLogLevel: 'error',
+      publicPath: '/',
+      filename: 'bundle.js',
+      quiet: true, // 除了初始启动信息之外的任何内容都不会被打印到控制台
+      contentBase: this.context.outDir,
+      overlay: false, // 错误在浏览器全屏覆盖
+      compress: true, // gzip 压缩
+      historyApiFallback: {
+        disableDotRule: true,
+        rewrites: [{ from: /./, to: '/index.html' }]
+      }
     };
 
     WebpackDevServer.addDevServerEntrypoints(this.webpackConfig, serverConfig);
@@ -56,7 +60,7 @@ export default class DevProcess {
     return this;
   }
 
-  listen(callback?: Function) {
+  listen(callback?: (err: Error | undefined) => void) {
     this.server.listen(this.prot, this.hostname, (err) => {
       if (typeof callback === 'function') {
         callback(err);
@@ -66,6 +70,13 @@ export default class DevProcess {
 
   getWebpackConfig() {
     this.webpackConfig = createClientConfig(this.context);
+
+    this.webpackConfig.devtool = 'source-map';
+    if (this.webpackConfig.plugins) {
+      this.webpackConfig.plugins.push(new webpack.NamedChunksPlugin());
+      this.webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+    }
+
     if (this.webpackConfig.plugins) {
       this.webpackConfig.plugins.push(
         new HtmlWebpackPlugin({
@@ -75,7 +86,7 @@ export default class DevProcess {
     }
 
     if (this.webpackConfig.output) {
-      this.webpackConfig.output.publicPath = 'http://localhost:8088';
+      this.webpackConfig.output.publicPath = 'http://localhost:8088/';
     }
     //
   }

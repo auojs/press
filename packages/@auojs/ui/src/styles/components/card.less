@@ -1,0 +1,64 @@
+@card-prefix-cls: ~'@{auo-prefix}-card';
+@card-head-height: 48px;
+@card-hover-border: fade(@black, 9%);
+@card-action-icon-size: 16px;
+
+@gradient-min: fade(@card-skeleton-bg, 20%);
+@gradient-max: fade(@card-skeleton-bg, 40%);
+
+.@{card-prefix-cls} {
+  .reset-component;
+
+  position: relative;
+  background: @card-background;
+  border-radius: @card-radius;
+  transition: all 0.3s;
+
+  &-bordered {
+    border: @border-width-base @border-style-base @border-color-split;
+  }
+
+  &-head {
+    min-height: @card-head-height;
+    margin-bottom: -1px; // Fix card grid overflow bug: https://gw.alipayobjects.com/zos/rmsportal/XonYxBikwpgbqIQBeuhk.png
+    padding: 0 @card-padding-base;
+    color: @card-head-color;
+    font-weight: 500;
+    font-size: @font-size-lg;
+    background: @card-head-background;
+    border-bottom: @border-width-base @border-style-base @border-color-split;
+    border-radius: @card-radius @card-radius 0 0;
+    .clearfix;
+
+    &-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    &-title {
+      display: inline-block;
+      flex: 1;
+      padding: @card-head-padding 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .@{auo-prefix}-tabs {
+      clear: both;
+      margin-bottom: -17px;
+      color: @text-color;
+      font-weight: normal;
+      font-size: @font-size-base;
+
+      &-bar {
+        border-bottom: @border-width-base @border-style-base @border-color-split;
+      }
+    }
+  }
+
+  &-body {
+    padding: @card-padding-base;
+    .clearfix;
+  }
+}
